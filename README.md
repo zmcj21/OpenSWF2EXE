@@ -1,6 +1,8 @@
 # OpenSWF2EXE
 OpenSource swf to exe converter.
 
+Notice:Still Developing... This is a WIP Project!
+
 ### References
 
 magicswf : https://github.com/PopovEvgeniy/magicswf
