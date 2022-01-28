@@ -3,4 +3,6 @@ OpenSource swf to exe converter.
 
 ### References
 
-https://github.com/PopovEvgeniy/magicswf
+magicswf : https://github.com/PopovEvgeniy/magicswf
+
+Windows Forms documentation : https://docs.microsoft.com/en-us/dotnet/desktop/winforms/?view=netdesktop-6.0
