@@ -8,9 +8,13 @@
 
     public partial class MainWindow : Form
     {
-        private HumanLanguage humanLanguage = HumanLanguage.Chinese;
+        //-----logic-----
+        private string flashPlayerPathString = string.Empty;
+        private string swfFilePathString = string.Empty;
+        private string outputPathString = string.Empty;
 
         //-----locale setting-----
+        private HumanLanguage humanLanguage = HumanLanguage.Chinese;
 
         private string menuFileTextCN = "文件";
         private string menuFileTextEN = "File";
@@ -30,8 +34,11 @@
         private string selectFlashPlayerButtonTextCN = "选择 Flash Player";
         private string selectFlashPlayerButtonTextEN = "Select Flash Player";
 
-        private string selectSWFFileButtonTextCN = "选择 SWF File";
+        private string selectSWFFileButtonTextCN = "选择 SWF 文件";
         private string selectSWFFileButtonTextEN = "Select SWF File";
+
+        private string selectOutputFolderCN = "选择输出文件夹";
+        private string selectOutputFolderEN = "Select Output Folder";
 
         private string flashPlayerPathTextCN = "flash player 路径:";
         private string flashPlayerPathTextEN = "flash player path:";
@@ -39,10 +46,17 @@
         private string swfFilePathTextCN = "flash swf 路径:";
         private string swfFilePathTextEN = "flash swf path:";
 
+        private string outputPathTextCN = "输出文件夹路径:";
+        private string outputPathTextEN = "output folder path:";
+
         public MainWindow()
         {
             InitializeComponent();
             InitApplication(this.humanLanguage);
+
+            //set default output folder:
+            outputPathTextBox.Text = Environment.CurrentDirectory + "\\";
+            outputPathString = outputPathTextBox.Text;
         }
 
         private void InitApplication(HumanLanguage humanLanguage)
@@ -53,8 +67,11 @@
                     {
                         this.SelectFlashPlayer.Text = selectFlashPlayerButtonTextCN;
                         this.SelectSWFFile.Text = selectSWFFileButtonTextCN;
+                        this.SelectOutputFolder.Text = selectOutputFolderCN;
+
                         this.flashPlayerPath.Text = flashPlayerPathTextCN;
                         this.swfFilePath.Text = swfFilePathTextCN;
+                        this.outputPath.Text = outputPathTextCN;
 
                         this.fileToolStripMenuItem.Text = menuFileTextCN;
                         this.closeToolStripMenuItem.Text = menuCloseTextCN;
@@ -68,8 +85,11 @@
                     {
                         this.SelectFlashPlayer.Text = selectFlashPlayerButtonTextEN;
                         this.SelectSWFFile.Text = selectSWFFileButtonTextEN;
+                        this.SelectOutputFolder.Text = selectOutputFolderEN;
+
                         this.flashPlayerPath.Text = flashPlayerPathTextEN;
                         this.swfFilePath.Text = swfFilePathTextEN;
+                        this.outputPath.Text = outputPathTextEN;
 
                         this.fileToolStripMenuItem.Text = menuFileTextEN;
                         this.closeToolStripMenuItem.Text = menuCloseTextEN;
@@ -80,16 +100,6 @@
                     }
                     break;
             }
-        }
-
-        private void OpenFile_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -105,6 +115,89 @@
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        //ref:https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-6.0
+        private void SelectFlashPlayer_Click(object sender, EventArgs e)
+        {
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Filter = "exe files (*.exe)|*.exe|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                flashPlayerPathString = openFileDialog.FileName;
+                flashPlayerPathTextBox.Text = flashPlayerPathString;
+            }
+        }
+
+        //ref:https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-6.0
+        private void SelectSWFFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.Filter = "swf files (*.swf)|*.swf|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                swfFilePathString = openFileDialog.FileName;
+                flashSWFPathTextBox.Text = swfFilePathString;
+            }
+        }
+
+        private void SelectOutputFolder_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (!string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+                    {
+                        outputPathString = folderBrowserDialog.SelectedPath;
+                        outputPathTextBox.Text = outputPathString;
+                    }
+                }
+            }
+        }
+
+        private void ConvertButton_Click(object sender, EventArgs e)
+        {
+            this.flashPlayerPathString = this.flashPlayerPathTextBox.Text;
+            this.swfFilePathString = this.flashSWFPathTextBox.Text;
+            this.outputPathString = this.outputPathTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(this.flashPlayerPathString) ||
+                string.IsNullOrWhiteSpace(this.swfFilePathString) ||
+                string.IsNullOrWhiteSpace(this.outputPathString))
+            {
+                //fail
+                return;
+            }
+
+            bool flashPlayerOK = SWF_TO_EXE.CheckFlashPlayer(flashPlayerPathString);
+            bool swfFileOK = SWF_TO_EXE.CheckSwfFile(swfFilePathString);
+            if (!flashPlayerOK)
+            {
+                //fail
+                return;
+            }
+            if (!swfFileOK)
+            {
+                //fail
+                return;
+            }
+
+            int len = swfFilePathString.LastIndexOf('.');
+            string swfFileName = swfFilePathString.Substring(0, len);
+            swfFileName = swfFileName + ".exe";
+
+            SWF_TO_EXE.BindSwfAndExe();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.Show();
         }
     }
 }
