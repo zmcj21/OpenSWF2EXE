@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSWF2EXE", "OpenSWF2EXE\OpenSWF2EXE.csproj", "{9B82B755-B041-45B0-BCB3-1F49F00B9C4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSWF2EXECMD", "OpenSWF2EXECMD\OpenSWF2EXECMD.csproj", "{0E6A4C38-63E1-48FB-9201-BDC4003CEFF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9B82B755-B041-45B0-BCB3-1F49F00B9C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B82B755-B041-45B0-BCB3-1F49F00B9C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B82B755-B041-45B0-BCB3-1F49F00B9C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B82B755-B041-45B0-BCB3-1F49F00B9C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6A4C38-63E1-48FB-9201-BDC4003CEFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6A4C38-63E1-48FB-9201-BDC4003CEFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6A4C38-63E1-48FB-9201-BDC4003CEFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6A4C38-63E1-48FB-9201-BDC4003CEFF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C2719D82-3116-42F0-90EA-9D62B0A07A65}
+		SolutionGuid = {289B909B-F76F-4E3B-A462-FDA6CF2B724B}
 	EndGlobalSection
 EndGlobal
