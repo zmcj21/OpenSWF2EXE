@@ -1,6 +1,6 @@
 # OpenSWF2EXE
 
-Last updated date : 2022/2/5
+Last updated date : 2022/2/8
 
 ### Intro
 
