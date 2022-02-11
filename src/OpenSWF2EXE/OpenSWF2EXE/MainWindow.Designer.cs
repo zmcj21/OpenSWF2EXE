@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.SelectFlashPlayer = new System.Windows.Forms.Button();
             this.flashPlayerPathTextBox = new System.Windows.Forms.TextBox();
             this.flashSWFPathTextBox = new System.Windows.Forms.TextBox();
@@ -40,11 +41,16 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chineseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SelectOutputFolder = new System.Windows.Forms.Button();
             this.outputPath = new System.Windows.Forms.Label();
             this.outputPathTextBox = new System.Windows.Forms.TextBox();
             this.ConvertButton = new System.Windows.Forms.Button();
+            this.console = new System.Windows.Forms.TextBox();
+            this.ConsoleText = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +72,6 @@
             this.flashPlayerPathTextBox.Name = "flashPlayerPathTextBox";
             this.flashPlayerPathTextBox.Size = new System.Drawing.Size(406, 27);
             this.flashPlayerPathTextBox.TabIndex = 1;
-            this.flashPlayerPathTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // flashSWFPathTextBox
             // 
@@ -128,7 +133,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(782, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -149,7 +153,8 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.languageToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.helpToolStripMenuItem.Text = "Help";
@@ -157,9 +162,32 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chineseToolStripMenuItem,
+            this.englishToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.languageToolStripMenuItem.Text = "Language";
+            // 
+            // chineseToolStripMenuItem
+            // 
+            this.chineseToolStripMenuItem.Name = "chineseToolStripMenuItem";
+            this.chineseToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.chineseToolStripMenuItem.Text = "Chinese";
+            this.chineseToolStripMenuItem.Click += new System.EventHandler(this.chineseToolStripMenuItem_Click);
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.englishToolStripMenuItem.Text = "English";
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 
@@ -204,12 +232,37 @@
             this.ConvertButton.UseVisualStyleBackColor = false;
             this.ConvertButton.Click += new System.EventHandler(this.ConvertButton_Click);
             // 
+            // console
+            // 
+            this.console.AcceptsTab = true;
+            this.console.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.console.Location = new System.Drawing.Point(12, 424);
+            this.console.Multiline = true;
+            this.console.Name = "console";
+            this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.console.Size = new System.Drawing.Size(748, 117);
+            this.console.TabIndex = 12;
+            // 
+            // ConsoleText
+            // 
+            this.ConsoleText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ConsoleText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ConsoleText.Location = new System.Drawing.Point(12, 390);
+            this.ConsoleText.Margin = new System.Windows.Forms.Padding(0);
+            this.ConsoleText.Name = "ConsoleText";
+            this.ConsoleText.Size = new System.Drawing.Size(126, 31);
+            this.ConsoleText.TabIndex = 13;
+            this.ConsoleText.Text = "Console:";
+            this.ConsoleText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.ConsoleText);
+            this.Controls.Add(this.console);
             this.Controls.Add(this.ConvertButton);
             this.Controls.Add(this.outputPathTextBox);
             this.Controls.Add(this.outputPath);
@@ -222,9 +275,9 @@
             this.Controls.Add(this.flashPlayerPathTextBox);
             this.Controls.Add(this.SelectFlashPlayer);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OpenSWF2EXE";
             this.menuStrip1.ResumeLayout(false);
@@ -253,5 +306,10 @@
         private Label outputPath;
         private TextBox outputPathTextBox;
         private Button ConvertButton;
+        private ToolStripMenuItem languageToolStripMenuItem;
+        private ToolStripMenuItem chineseToolStripMenuItem;
+        private ToolStripMenuItem englishToolStripMenuItem;
+        private TextBox console;
+        private Label ConsoleText;
     }
 }

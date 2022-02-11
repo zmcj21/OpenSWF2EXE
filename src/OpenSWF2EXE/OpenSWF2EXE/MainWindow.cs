@@ -3,18 +3,21 @@
     public enum HumanLanguage
     {
         Chinese = 1,
-        English,
+        English = 2,
+    }
+
+    public enum SWF2EXE_Result
+    {
+        OK = 0,
+        FlashPlayerInvalid = 1,
+        FlashSWFInvalid = 2,
     }
 
     public partial class MainWindow : Form
     {
-        //-----logic-----
-        private string flashPlayerPathString = string.Empty;
-        private string swfFilePathString = string.Empty;
-        private string outputPathString = string.Empty;
+        private HumanLanguage humanLanguage;
 
-        //-----locale setting-----
-        private HumanLanguage humanLanguage = HumanLanguage.Chinese;
+        #region LocaleSetting
 
         private string menuFileTextCN = "文件";
         private string menuFileTextEN = "File";
@@ -49,18 +52,17 @@
         private string outputPathTextCN = "输出文件夹路径:";
         private string outputPathTextEN = "output folder path:";
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            InitApplication(this.humanLanguage);
+        private string languageTextCN = "语言";
+        private string languageTextEN = "Language";
 
-            //set default output folder:
-            outputPathTextBox.Text = Environment.CurrentDirectory + "\\";
-            outputPathString = outputPathTextBox.Text;
-        }
+        private string consoleTextCN = "控制台:";
+        private string consoleTextEN = "Console:";
 
-        private void InitApplication(HumanLanguage humanLanguage)
+        #endregion
+
+        private void SetLocale(HumanLanguage humanLanguage)
         {
+            this.humanLanguage = humanLanguage;
             switch (humanLanguage)
             {
                 case HumanLanguage.Chinese:
@@ -68,17 +70,18 @@
                         this.SelectFlashPlayer.Text = selectFlashPlayerButtonTextCN;
                         this.SelectSWFFile.Text = selectSWFFileButtonTextCN;
                         this.SelectOutputFolder.Text = selectOutputFolderCN;
-
                         this.flashPlayerPath.Text = flashPlayerPathTextCN;
                         this.swfFilePath.Text = swfFilePathTextCN;
-                        this.outputPath.Text = outputPathTextCN;
 
+                        this.outputPath.Text = outputPathTextCN;
                         this.fileToolStripMenuItem.Text = menuFileTextCN;
                         this.closeToolStripMenuItem.Text = menuCloseTextCN;
                         this.helpToolStripMenuItem.Text = menuHelpTextCN;
                         this.aboutToolStripMenuItem.Text = menuAboutTextCN;
-                        this.Title.Text = titleTextCN;
 
+                        this.Title.Text = titleTextCN;
+                        this.languageToolStripMenuItem.Text = languageTextCN;
+                        this.ConsoleText.Text = consoleTextCN;
                     }
                     break;
                 case HumanLanguage.English:
@@ -86,35 +89,104 @@
                         this.SelectFlashPlayer.Text = selectFlashPlayerButtonTextEN;
                         this.SelectSWFFile.Text = selectSWFFileButtonTextEN;
                         this.SelectOutputFolder.Text = selectOutputFolderEN;
-
                         this.flashPlayerPath.Text = flashPlayerPathTextEN;
                         this.swfFilePath.Text = swfFilePathTextEN;
-                        this.outputPath.Text = outputPathTextEN;
 
+                        this.outputPath.Text = outputPathTextEN;
                         this.fileToolStripMenuItem.Text = menuFileTextEN;
                         this.closeToolStripMenuItem.Text = menuCloseTextEN;
                         this.helpToolStripMenuItem.Text = menuHelpTextEN;
                         this.aboutToolStripMenuItem.Text = menuAboutTextEN;
-                        this.Title.Text = titleTextEN;
 
+                        this.Title.Text = titleTextEN;
+                        this.languageToolStripMenuItem.Text = languageTextEN;
+                        this.ConsoleText.Text = consoleTextEN;
                     }
                     break;
             }
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void ConsoleWrite(string msg)
         {
-
+            this.console.Text += msg;
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConsoleWriteLine(string msg)
         {
-            Application.Exit();
+            this.console.Text += (msg + "\r\n");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        //Reference:http://www.nullsecurity.org/article/extracting_swf_from_flash_projector
+        private SWF2EXE_Result SWF2EXE(string flashPlayerPath, string flashSWFPath, string outputPath)
         {
+            bool flashPlayerExecutable = false;
+            bool flashSWFExecutable = false;
 
+            //open files:
+            FileStream flashPlayerFile = new FileStream(flashPlayerPath, FileMode.Open, FileAccess.Read);
+            FileStream flashSWFFile = new FileStream(flashSWFPath, FileMode.Open, FileAccess.Read);
+            FileStream outputFile = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+            BinaryReader flashPlayerReader = new BinaryReader(flashPlayerFile);
+            BinaryReader flashSWFReader = new BinaryReader(flashSWFFile);
+            BinaryWriter outputWriter = new BinaryWriter(outputFile);
+
+            byte[] playerSignature = flashPlayerReader.ReadBytes(2);
+            if (playerSignature[0] == 'M' && playerSignature[1] == 'Z')
+            {
+                flashPlayerExecutable = true;
+            }
+            if (!flashPlayerExecutable)
+            {
+                return SWF2EXE_Result.FlashPlayerInvalid;
+            }
+
+            byte[] flashSignature = flashSWFReader.ReadBytes(3);
+            if ((flashSignature[0] == 'F' && flashSignature[1] == 'W' && flashSignature[2] == 'S') ||
+                (flashSignature[0] == 'C' && flashSignature[1] == 'W' && flashSignature[2] == 'S'))
+            {
+                flashSWFExecutable = true;
+            }
+            if (!flashSWFExecutable)
+            {
+                return SWF2EXE_Result.FlashSWFInvalid;
+            }
+
+            //-----combine flashPlayer and flashSWF-----
+            flashPlayerReader.BaseStream.Position = 0;
+            flashSWFReader.BaseStream.Position = 0;
+            //copy flashPlayer:
+            for (int i = 0; i < flashPlayerReader.BaseStream.Length; i++)
+            {
+                outputWriter.Write((byte)flashPlayerReader.BaseStream.ReadByte());
+            }
+            //copy flashSWF:
+            for (int i = 0; i < flashSWFReader.BaseStream.Length; i++)
+            {
+                outputWriter.Write((byte)flashSWFReader.BaseStream.ReadByte());
+            }
+            //write 0xFA123456(Flash Projector "check" value):
+            outputWriter.Write(0xFA123456);
+            //write Size of the original SWF file:
+            outputWriter.Write((uint)flashSWFReader.BaseStream.Length);
+
+            //close files:
+            flashPlayerReader.Close();
+            flashSWFReader.Close();
+            outputWriter.Close();
+            flashPlayerFile.Close();
+            flashSWFFile.Close();
+            outputFile.Close();
+
+            return SWF2EXE_Result.OK;
+        }
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            //set language:
+            SetLocale(HumanLanguage.English);
+            //set default output folder:
+            outputPathTextBox.Text = Environment.CurrentDirectory + "\\";
         }
 
         //ref:https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-6.0
@@ -126,8 +198,7 @@
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                flashPlayerPathString = openFileDialog.FileName;
-                flashPlayerPathTextBox.Text = flashPlayerPathString;
+                flashPlayerPathTextBox.Text = openFileDialog.FileName;
             }
         }
 
@@ -140,8 +211,7 @@
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                swfFilePathString = openFileDialog.FileName;
-                flashSWFPathTextBox.Text = swfFilePathString;
+                flashSWFPathTextBox.Text = openFileDialog.FileName;
             }
         }
 
@@ -153,8 +223,7 @@
                 {
                     if (!string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                     {
-                        outputPathString = folderBrowserDialog.SelectedPath;
-                        outputPathTextBox.Text = outputPathString;
+                        outputPathTextBox.Text = folderBrowserDialog.SelectedPath;
                     }
                 }
             }
@@ -162,42 +231,112 @@
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            this.flashPlayerPathString = this.flashPlayerPathTextBox.Text;
-            this.swfFilePathString = this.flashSWFPathTextBox.Text;
-            this.outputPathString = this.outputPathTextBox.Text;
+            string flashPlayerPath = this.flashPlayerPathTextBox.Text;
+            string flashSWFPath = this.flashSWFPathTextBox.Text;
+            string outputPath = this.outputPathTextBox.Text;
 
-            if (string.IsNullOrWhiteSpace(this.flashPlayerPathString) ||
-                string.IsNullOrWhiteSpace(this.swfFilePathString) ||
-                string.IsNullOrWhiteSpace(this.outputPathString))
+            if (string.IsNullOrWhiteSpace(flashPlayerPath))
             {
-                //fail
+                if (this.humanLanguage == HumanLanguage.Chinese)
+                {
+                    ConsoleWriteLine("FlashPlayer路径不能为空！！！");
+                }
+                else if (this.humanLanguage == HumanLanguage.English)
+                {
+                    ConsoleWriteLine("FlashPlayer's path can't be empty!!!");
+                }
                 return;
             }
 
-            bool flashPlayerOK = SWF_TO_EXE.CheckFlashPlayer(flashPlayerPathString);
-            bool swfFileOK = SWF_TO_EXE.CheckSwfFile(swfFilePathString);
-            if (!flashPlayerOK)
+            if (string.IsNullOrWhiteSpace(flashSWFPath))
             {
-                //fail
-                return;
-            }
-            if (!swfFileOK)
-            {
-                //fail
+                if (this.humanLanguage == HumanLanguage.Chinese)
+                {
+                    ConsoleWriteLine("swf文件路径不能为空！！！");
+                }
+                else if (this.humanLanguage == HumanLanguage.English)
+                {
+                    ConsoleWriteLine("swf file's path can't be empty!!!");
+                }
                 return;
             }
 
-            int len = swfFilePathString.LastIndexOf('.');
-            string swfFileName = swfFilePathString.Substring(0, len);
-            swfFileName = swfFileName + ".exe";
+            if (string.IsNullOrWhiteSpace(outputPath))
+            {
+                if (this.humanLanguage == HumanLanguage.Chinese)
+                {
+                    ConsoleWriteLine("输出路径必须被指定！！！");
+                }
+                else if (this.humanLanguage == HumanLanguage.English)
+                {
+                    ConsoleWriteLine("output folder must be specified!!!");
+                }
+                return;
+            }
 
-            SWF_TO_EXE.BindSwfAndExe();
+            outputPath = $"{flashSWFPath.Substring(0, flashSWFPath.LastIndexOf('.'))}.exe";
+
+            SWF2EXE_Result result = SWF2EXE(flashPlayerPath, flashSWFPath, outputPath);
+            switch (result)
+            {
+                case SWF2EXE_Result.OK:
+                    {
+                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        {
+                            ConsoleWriteLine("转换成功。");
+                        }
+                        else if (this.humanLanguage == HumanLanguage.English)
+                        {
+                            ConsoleWriteLine("Work Success.");
+                        }
+                    }
+                    break;
+                case SWF2EXE_Result.FlashPlayerInvalid:
+                    {
+                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        {
+                            ConsoleWriteLine("FlashPlayer无效！！！");
+                        }
+                        else if (this.humanLanguage == HumanLanguage.English)
+                        {
+                            ConsoleWriteLine("FlashPlayer invalid!!!");
+                        }
+                    }
+                    break;
+                case SWF2EXE_Result.FlashSWFInvalid:
+                    {
+                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        {
+                            ConsoleWriteLine("Flash文件无效！！！");
+                        }
+                        else if (this.humanLanguage == HumanLanguage.English)
+                        {
+                            ConsoleWriteLine("Flash File invalid!!!");
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.Show();
+        }
+
+        private void chineseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLocale(HumanLanguage.Chinese);
+        }
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLocale(HumanLanguage.English);
         }
     }
 }
