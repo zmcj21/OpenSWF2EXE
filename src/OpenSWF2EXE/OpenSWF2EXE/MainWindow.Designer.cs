@@ -51,7 +51,11 @@
             this.ConvertButton = new System.Windows.Forms.Button();
             this.console = new System.Windows.Forms.TextBox();
             this.ConsoleText = new System.Windows.Forms.Label();
+            this.resultText = new System.Windows.Forms.Label();
+            this.resultImage = new System.Windows.Forms.PictureBox();
+            this.openFolder = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultImage)).BeginInit();
             this.SuspendLayout();
             // 
             // SelectFlashPlayer
@@ -224,7 +228,7 @@
             this.ConvertButton.BackColor = System.Drawing.Color.Coral;
             this.ConvertButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ConvertButton.ForeColor = System.Drawing.Color.White;
-            this.ConvertButton.Location = new System.Drawing.Point(294, 310);
+            this.ConvertButton.Location = new System.Drawing.Point(279, 368);
             this.ConvertButton.Name = "ConvertButton";
             this.ConvertButton.Size = new System.Drawing.Size(215, 69);
             this.ConvertButton.TabIndex = 11;
@@ -235,8 +239,9 @@
             // console
             // 
             this.console.AcceptsTab = true;
+            this.console.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.console.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.console.Location = new System.Drawing.Point(12, 424);
+            this.console.Location = new System.Drawing.Point(12, 515);
             this.console.Multiline = true;
             this.console.Name = "console";
             this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -247,7 +252,7 @@
             // 
             this.ConsoleText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ConsoleText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ConsoleText.Location = new System.Drawing.Point(12, 390);
+            this.ConsoleText.Location = new System.Drawing.Point(12, 481);
             this.ConsoleText.Margin = new System.Windows.Forms.Padding(0);
             this.ConsoleText.Name = "ConsoleText";
             this.ConsoleText.Size = new System.Drawing.Size(126, 31);
@@ -255,12 +260,46 @@
             this.ConsoleText.Text = "Console:";
             this.ConsoleText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // resultText
+            // 
+            this.resultText.AutoSize = true;
+            this.resultText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.resultText.Location = new System.Drawing.Point(500, 394);
+            this.resultText.Name = "resultText";
+            this.resultText.Size = new System.Drawing.Size(155, 27);
+            this.resultText.TabIndex = 14;
+            this.resultText.Text = "Convert Result:";
+            this.resultText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // resultImage
+            // 
+            this.resultImage.Location = new System.Drawing.Point(661, 371);
+            this.resultImage.Name = "resultImage";
+            this.resultImage.Size = new System.Drawing.Size(49, 50);
+            this.resultImage.TabIndex = 15;
+            this.resultImage.TabStop = false;
+            // 
+            // openFolder
+            // 
+            this.openFolder.Checked = true;
+            this.openFolder.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.openFolder.Location = new System.Drawing.Point(147, 394);
+            this.openFolder.Name = "openFolder";
+            this.openFolder.Size = new System.Drawing.Size(126, 24);
+            this.openFolder.TabIndex = 16;
+            this.openFolder.Text = "Open Folder";
+            this.openFolder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openFolder.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(782, 553);
+            this.ClientSize = new System.Drawing.Size(782, 644);
+            this.Controls.Add(this.openFolder);
+            this.Controls.Add(this.resultImage);
+            this.Controls.Add(this.resultText);
             this.Controls.Add(this.ConsoleText);
             this.Controls.Add(this.console);
             this.Controls.Add(this.ConvertButton);
@@ -282,6 +321,7 @@
             this.Text = "OpenSWF2EXE";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.resultImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,5 +351,8 @@
         private ToolStripMenuItem englishToolStripMenuItem;
         private TextBox console;
         private Label ConsoleText;
+        private Label resultText;
+        private PictureBox resultImage;
+        private CheckBox openFolder;
     }
 }

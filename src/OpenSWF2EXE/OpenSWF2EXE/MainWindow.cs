@@ -1,4 +1,6 @@
-﻿namespace OpenSWF2EXE
+﻿using System.Diagnostics;
+
+namespace OpenSWF2EXE
 {
     public enum HumanLanguage
     {
@@ -58,6 +60,15 @@
         private string consoleTextCN = "控制台:";
         private string consoleTextEN = "Console:";
 
+        private string convertTextCN = "转换";
+        private string convertTextEN = "Convert";
+
+        private string openFolderTextCN = "打开文件夹";
+        private string openFolderTextEN = "Open Folder";
+
+        private string resultTextCN = "转换结果:";
+        private string resultTextEN = "Convert Result:";
+
         #endregion
 
         private void SetLocale(HumanLanguage humanLanguage)
@@ -82,6 +93,10 @@
                         this.Title.Text = titleTextCN;
                         this.languageToolStripMenuItem.Text = languageTextCN;
                         this.ConsoleText.Text = consoleTextCN;
+                        this.ConvertButton.Text = convertTextCN;
+                        this.openFolder.Text = openFolderTextCN;
+
+                        this.resultText.Text = resultTextCN;
                     }
                     break;
                 case HumanLanguage.English:
@@ -101,6 +116,10 @@
                         this.Title.Text = titleTextEN;
                         this.languageToolStripMenuItem.Text = languageTextEN;
                         this.ConsoleText.Text = consoleTextEN;
+                        this.ConvertButton.Text = convertTextEN;
+                        this.openFolder.Text = openFolderTextEN;
+
+                        this.resultText.Text = resultTextEN;
                     }
                     break;
             }
@@ -117,7 +136,7 @@
         }
 
         //Reference:http://www.nullsecurity.org/article/extracting_swf_from_flash_projector
-        private SWF2EXE_Result SWF2EXE(string flashPlayerPath, string flashSWFPath, string outputPath)
+        private SWF2EXE_Result SWF2EXE(string flashPlayerPath, string flashSWFPath, string outputFilePath)
         {
             bool flashPlayerExecutable = false;
             bool flashSWFExecutable = false;
@@ -125,7 +144,7 @@
             //open files:
             FileStream flashPlayerFile = new FileStream(flashPlayerPath, FileMode.Open, FileAccess.Read);
             FileStream flashSWFFile = new FileStream(flashSWFPath, FileMode.Open, FileAccess.Read);
-            FileStream outputFile = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+            FileStream outputFile = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write);
             BinaryReader flashPlayerReader = new BinaryReader(flashPlayerFile);
             BinaryReader flashSWFReader = new BinaryReader(flashSWFFile);
             BinaryWriter outputWriter = new BinaryWriter(outputFile);
@@ -274,9 +293,11 @@
                 return;
             }
 
-            outputPath = $"{flashSWFPath.Substring(0, flashSWFPath.LastIndexOf('.'))}.exe";
+            FileInfo fileInfo = new FileInfo(flashSWFPath);
+            string outputFilePath = Path.Combine(new string[] { outputPath, $"{fileInfo.Name.Substring(0, fileInfo.Name.LastIndexOf('.'))}.exe" });
 
-            SWF2EXE_Result result = SWF2EXE(flashPlayerPath, flashSWFPath, outputPath);
+            SWF2EXE_Result result = SWF2EXE(flashPlayerPath, flashSWFPath, outputFilePath);
+
             switch (result)
             {
                 case SWF2EXE_Result.OK:
@@ -289,6 +310,11 @@
                         {
                             ConsoleWriteLine("Work Success.");
                         }
+                        if (openFolder.Checked)
+                        {
+                            Process.Start("explorer.exe", outputPath);
+                        }
+                        resultImage.Image = Properties.Resources._1;
                     }
                     break;
                 case SWF2EXE_Result.FlashPlayerInvalid:
@@ -301,6 +327,7 @@
                         {
                             ConsoleWriteLine("FlashPlayer invalid!!!");
                         }
+                        resultImage.Image = Properties.Resources._2;
                     }
                     break;
                 case SWF2EXE_Result.FlashSWFInvalid:
@@ -313,6 +340,7 @@
                         {
                             ConsoleWriteLine("Flash File invalid!!!");
                         }
+                        resultImage.Image = Properties.Resources._2;
                     }
                     break;
             }
