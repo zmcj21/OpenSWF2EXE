@@ -100,7 +100,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 25);
             this.label1.TabIndex = 8;
-            this.label1.Text = "ver:0.1";
+            this.label1.Text = "ver:0.2";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GithubText

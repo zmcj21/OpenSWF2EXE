@@ -69,6 +69,9 @@ namespace OpenSWF2EXE
         private string resultTextCN = "转换结果:";
         private string resultTextEN = "Convert Result:";
 
+        private string menuToolTextCN = "工具";
+        private string menuToolTextEN = "Tool";
+
         #endregion
 
         private void SetLocale(HumanLanguage humanLanguage)
@@ -97,6 +100,7 @@ namespace OpenSWF2EXE
                         this.openFolder.Text = openFolderTextCN;
 
                         this.resultText.Text = resultTextCN;
+                        this.toolToolStripMenuItem.Text = menuToolTextCN;
                     }
                     break;
                 case HumanLanguage.English:
@@ -120,6 +124,7 @@ namespace OpenSWF2EXE
                         this.openFolder.Text = openFolderTextEN;
 
                         this.resultText.Text = resultTextEN;
+                        this.toolToolStripMenuItem.Text = menuToolTextEN;
                     }
                     break;
             }
@@ -203,7 +208,8 @@ namespace OpenSWF2EXE
         {
             InitializeComponent();
             //set language:
-            SetLocale(HumanLanguage.English);
+            HumanLanguage humanLanguage = (HumanLanguage)Config.GetLanguage();
+            SetLocale(humanLanguage);
             //set default output folder:
             outputPathTextBox.Text = Environment.CurrentDirectory + "\\";
         }
@@ -359,12 +365,20 @@ namespace OpenSWF2EXE
 
         private void chineseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Config.SetLanguage((int)HumanLanguage.Chinese);
             SetLocale(HumanLanguage.Chinese);
         }
 
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Config.SetLanguage((int)HumanLanguage.English);
             SetLocale(HumanLanguage.English);
+        }
+
+        private void eXETOSWFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EXE2SWF form = new EXE2SWF();
+            form.Show();
         }
     }
 }

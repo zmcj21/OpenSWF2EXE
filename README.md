@@ -8,7 +8,7 @@ OpenSource swf to exe converter.
 
 ### Usage
 
-Download release version and open it.
+Download newest release version and open it.
 
 ### References
 

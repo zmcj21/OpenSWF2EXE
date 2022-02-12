@@ -39,6 +39,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eXETOSWFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,18 +125,21 @@
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(782, 63);
             this.Title.TabIndex = 6;
-            this.Title.Text = "Open swf file to exe file converter";
+            this.Title.Text = "Open SWF to EXE converter";
             this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.toolToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(782, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.menuStrip1.Size = new System.Drawing.Size(782, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -153,6 +158,21 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // toolToolStripMenuItem
+            // 
+            this.toolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eXETOSWFToolStripMenuItem});
+            this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.toolToolStripMenuItem.Text = "Tool";
+            // 
+            // eXETOSWFToolStripMenuItem
+            // 
+            this.eXETOSWFToolStripMenuItem.Name = "eXETOSWFToolStripMenuItem";
+            this.eXETOSWFToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.eXETOSWFToolStripMenuItem.Text = "EXE TO SWF";
+            this.eXETOSWFToolStripMenuItem.Click += new System.EventHandler(this.eXETOSWFToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -241,18 +261,18 @@
             this.console.AcceptsTab = true;
             this.console.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.console.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.console.Location = new System.Drawing.Point(12, 515);
+            this.console.Location = new System.Drawing.Point(12, 488);
             this.console.Multiline = true;
             this.console.Name = "console";
             this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.console.Size = new System.Drawing.Size(748, 117);
+            this.console.Size = new System.Drawing.Size(748, 143);
             this.console.TabIndex = 12;
             // 
             // ConsoleText
             // 
             this.ConsoleText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ConsoleText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ConsoleText.Location = new System.Drawing.Point(12, 481);
+            this.ConsoleText.Location = new System.Drawing.Point(12, 454);
             this.ConsoleText.Margin = new System.Windows.Forms.Padding(0);
             this.ConsoleText.Name = "ConsoleText";
             this.ConsoleText.Size = new System.Drawing.Size(126, 31);
@@ -296,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(782, 644);
+            this.ClientSize = new System.Drawing.Size(782, 643);
             this.Controls.Add(this.openFolder);
             this.Controls.Add(this.resultImage);
             this.Controls.Add(this.resultText);
@@ -354,5 +374,7 @@
         private Label resultText;
         private PictureBox resultImage;
         private CheckBox openFolder;
+        private ToolStripMenuItem toolToolStripMenuItem;
+        private ToolStripMenuItem eXETOSWFToolStripMenuItem;
     }
 }
