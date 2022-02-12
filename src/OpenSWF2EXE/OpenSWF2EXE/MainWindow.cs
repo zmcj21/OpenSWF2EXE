@@ -141,6 +141,7 @@ namespace OpenSWF2EXE
         }
 
         //Reference:http://www.nullsecurity.org/article/extracting_swf_from_flash_projector
+        //REF:https://stackoverflow.com/questions/11679113/command-line-extract-from-swf
         private SWF2EXE_Result SWF2EXE(string flashPlayerPath, string flashSWFPath, string outputFilePath)
         {
             bool flashPlayerExecutable = false;
