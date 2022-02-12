@@ -6,6 +6,8 @@
 
 开源swf转exe转换器。
 
+![BG](https://github.com/zmcj21/OpenSWF2EXE/blob/main/docs/intro_cn.png)
+
 ### 用法
 
 下载最新发行版并运行。
