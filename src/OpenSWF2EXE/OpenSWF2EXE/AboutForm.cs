@@ -15,6 +15,12 @@ namespace OpenSWF2EXE
         private string GithubTextCN = "Github:";
         private string GithubTextEN = "Github:";
 
+        private string ArtistTextCN = "艺术家:";
+        private string ArtistTextEN = "Artist:";
+
+        private string TestTextCN = "测试人员名单:";
+        private string TestTextEN = "List of testers:";
+
         #endregion
 
         public AboutForm()
@@ -25,12 +31,16 @@ namespace OpenSWF2EXE
                 AuthorText.Text = AuthorTextCN;
                 EmailText.Text = EmailTextCN;
                 GithubText.Text = GithubTextCN;
+                ArtistText.Text = ArtistTextCN;
+                TestText.Text = TestTextCN;
             }
             else if (MainWindow.humanLanguage == HumanLanguage.English)
             {
                 AuthorText.Text = AuthorTextEN;
                 EmailText.Text = EmailTextEN;
                 GithubText.Text = GithubTextEN;
+                ArtistText.Text = ArtistTextEN;
+                TestText.Text = TestTextEN;
             }
         }
 
