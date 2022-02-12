@@ -17,7 +17,7 @@ namespace OpenSWF2EXE
 
     public partial class MainWindow : Form
     {
-        private HumanLanguage humanLanguage;
+        public static HumanLanguage humanLanguage;
 
         #region LocaleSetting
 
@@ -73,7 +73,7 @@ namespace OpenSWF2EXE
 
         private void SetLocale(HumanLanguage humanLanguage)
         {
-            this.humanLanguage = humanLanguage;
+            MainWindow.humanLanguage = humanLanguage;
             switch (humanLanguage)
             {
                 case HumanLanguage.Chinese:
@@ -256,11 +256,11 @@ namespace OpenSWF2EXE
 
             if (string.IsNullOrWhiteSpace(flashPlayerPath))
             {
-                if (this.humanLanguage == HumanLanguage.Chinese)
+                if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                 {
                     ConsoleWriteLine("FlashPlayer路径不能为空！！！");
                 }
-                else if (this.humanLanguage == HumanLanguage.English)
+                else if (MainWindow.humanLanguage == HumanLanguage.English)
                 {
                     ConsoleWriteLine("FlashPlayer's path can't be empty!!!");
                 }
@@ -269,11 +269,11 @@ namespace OpenSWF2EXE
 
             if (string.IsNullOrWhiteSpace(flashSWFPath))
             {
-                if (this.humanLanguage == HumanLanguage.Chinese)
+                if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                 {
                     ConsoleWriteLine("swf文件路径不能为空！！！");
                 }
-                else if (this.humanLanguage == HumanLanguage.English)
+                else if (MainWindow.humanLanguage == HumanLanguage.English)
                 {
                     ConsoleWriteLine("swf file's path can't be empty!!!");
                 }
@@ -282,11 +282,11 @@ namespace OpenSWF2EXE
 
             if (string.IsNullOrWhiteSpace(outputPath))
             {
-                if (this.humanLanguage == HumanLanguage.Chinese)
+                if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                 {
                     ConsoleWriteLine("输出路径必须被指定！！！");
                 }
-                else if (this.humanLanguage == HumanLanguage.English)
+                else if (MainWindow.humanLanguage == HumanLanguage.English)
                 {
                     ConsoleWriteLine("output folder must be specified!!!");
                 }
@@ -302,11 +302,11 @@ namespace OpenSWF2EXE
             {
                 case SWF2EXE_Result.OK:
                     {
-                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                         {
                             ConsoleWriteLine("转换成功。");
                         }
-                        else if (this.humanLanguage == HumanLanguage.English)
+                        else if (MainWindow.humanLanguage == HumanLanguage.English)
                         {
                             ConsoleWriteLine("Work Success.");
                         }
@@ -319,11 +319,11 @@ namespace OpenSWF2EXE
                     break;
                 case SWF2EXE_Result.FlashPlayerInvalid:
                     {
-                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                         {
                             ConsoleWriteLine("FlashPlayer无效！！！");
                         }
-                        else if (this.humanLanguage == HumanLanguage.English)
+                        else if (MainWindow.humanLanguage == HumanLanguage.English)
                         {
                             ConsoleWriteLine("FlashPlayer invalid!!!");
                         }
@@ -332,11 +332,11 @@ namespace OpenSWF2EXE
                     break;
                 case SWF2EXE_Result.FlashSWFInvalid:
                     {
-                        if (this.humanLanguage == HumanLanguage.Chinese)
+                        if (MainWindow.humanLanguage == HumanLanguage.Chinese)
                         {
                             ConsoleWriteLine("Flash文件无效！！！");
                         }
-                        else if (this.humanLanguage == HumanLanguage.English)
+                        else if (MainWindow.humanLanguage == HumanLanguage.English)
                         {
                             ConsoleWriteLine("Flash File invalid!!!");
                         }

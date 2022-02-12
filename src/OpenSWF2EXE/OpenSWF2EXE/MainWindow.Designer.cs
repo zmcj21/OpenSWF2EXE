@@ -273,9 +273,9 @@
             // 
             // resultImage
             // 
-            this.resultImage.Location = new System.Drawing.Point(661, 371);
+            this.resultImage.Location = new System.Drawing.Point(661, 373);
             this.resultImage.Name = "resultImage";
-            this.resultImage.Size = new System.Drawing.Size(49, 50);
+            this.resultImage.Size = new System.Drawing.Size(48, 48);
             this.resultImage.TabIndex = 15;
             this.resultImage.TabStop = false;
             // 
