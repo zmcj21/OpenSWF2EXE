@@ -1,18 +1,16 @@
 # OpenSWF2EXE
 
-[中文](https://github.com/zmcj21/OpenSWF2EXE/blob/main/docs/README_cn.md)
+最后更新日期 : 2022/2/12
 
-Last updated date : 2022/2/12
+### 介绍
 
-### Intro
+开源swf转exe转换器。
 
-OpenSource swf to exe converter.
+### 用法
 
-### Usage
+下载最新发行版并运行。
 
-Download newest release version and open it.
-
-### References
+### 引用
 
 magicswf : https://github.com/PopovEvgeniy/magicswf
 
