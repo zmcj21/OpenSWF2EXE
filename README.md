@@ -1,6 +1,6 @@
 # OpenSWF2EXE
 
-Last updated date : 2022/2/11
+Last updated date : 2022/2/12
 
 ### Intro
 
@@ -8,7 +8,7 @@ OpenSource swf to exe converter.
 
 ### Usage
 
-coming soon.
+Download release version and open it.
 
 ### References
 
