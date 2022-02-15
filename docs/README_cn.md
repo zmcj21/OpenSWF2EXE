@@ -1,6 +1,6 @@
 # OpenSWF2EXE
 
-最后更新日期 : 2022/2/12
+最后更新日期 : 2022/2/15
 
 ### 介绍
 
@@ -17,5 +17,7 @@
 magicswf : https://github.com/PopovEvgeniy/magicswf
 
 Extracting SWF from Flash Projector : http://www.nullsecurity.org/article/extracting_swf_from_flash_projector
+
+FWS & CWS : https://stackoverflow.com/questions/11679113/command-line-extract-from-swf
 
 Windows Forms documentation : https://docs.microsoft.com/en-us/dotnet/desktop/winforms/?view=netdesktop-6.0

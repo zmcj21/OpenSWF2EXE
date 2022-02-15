@@ -2,7 +2,7 @@
 
 [中文](https://github.com/zmcj21/OpenSWF2EXE/blob/main/docs/README_cn.md)
 
-Last updated date : 2022/2/12
+Last updated date : 2022/2/15
 
 ### Intro
 
