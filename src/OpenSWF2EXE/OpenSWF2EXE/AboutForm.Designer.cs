@@ -29,177 +29,176 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
-            this.AuthorText = new System.Windows.Forms.Label();
-            this.EmailText = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.GithubText = new System.Windows.Forms.Label();
-            this.githubLink = new System.Windows.Forms.LinkLabel();
-            this.ArtistText = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.TestText = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            AuthorText = new Label();
+            EmailText = new Label();
+            pictureBox1 = new PictureBox();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            label1 = new Label();
+            GithubText = new Label();
+            githubLink = new LinkLabel();
+            ArtistText = new Label();
+            textBox3 = new TextBox();
+            TestText = new Label();
+            textBox4 = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // AuthorText
             // 
-            this.AuthorText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.AuthorText.Location = new System.Drawing.Point(5, 119);
-            this.AuthorText.Margin = new System.Windows.Forms.Padding(0);
-            this.AuthorText.Name = "AuthorText";
-            this.AuthorText.Size = new System.Drawing.Size(98, 33);
-            this.AuthorText.TabIndex = 0;
-            this.AuthorText.Text = "Author:";
-            this.AuthorText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            AuthorText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            AuthorText.Location = new Point(5, 119);
+            AuthorText.Margin = new Padding(0);
+            AuthorText.Name = "AuthorText";
+            AuthorText.Size = new Size(98, 33);
+            AuthorText.TabIndex = 0;
+            AuthorText.Text = "Author:";
+            AuthorText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // EmailText
             // 
-            this.EmailText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.EmailText.Location = new System.Drawing.Point(5, 194);
-            this.EmailText.Margin = new System.Windows.Forms.Padding(0);
-            this.EmailText.Name = "EmailText";
-            this.EmailText.Size = new System.Drawing.Size(98, 25);
-            this.EmailText.TabIndex = 2;
-            this.EmailText.Text = "Email:";
-            this.EmailText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            EmailText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            EmailText.Location = new Point(5, 194);
+            EmailText.Margin = new Padding(0);
+            EmailText.Name = "EmailText";
+            EmailText.Size = new Size(98, 25);
+            EmailText.TabIndex = 2;
+            EmailText.Text = "Email:";
+            EmailText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::OpenSWF2EXE.Properties.Resources.FLASH_TO_EXE_3;
-            this.pictureBox1.Location = new System.Drawing.Point(198, 9);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 71);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.FLASH_TO_EXE_3;
+            pictureBox1.Location = new Point(198, 9);
+            pictureBox1.Margin = new Padding(0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(66, 71);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(103, 191);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(312, 33);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TabStop = false;
-            this.textBox1.Text = "zmcj20plusplus@gmail.com";
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
+            textBox1.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Location = new Point(103, 191);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(312, 33);
+            textBox1.TabIndex = 6;
+            textBox1.TabStop = false;
+            textBox1.Text = "zmcj20plusplus@gmail.com";
             // 
             // textBox2
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(103, 119);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(161, 33);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.TabStop = false;
-            this.textBox2.Text = "zmcj21";
+            textBox2.BorderStyle = BorderStyle.FixedSingle;
+            textBox2.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox2.Location = new Point(103, 119);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(161, 33);
+            textBox2.TabIndex = 7;
+            textBox2.TabStop = false;
+            textBox2.Text = "zmcj21";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(168, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 25);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "ver:0.2.1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.Location = new Point(168, 82);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 25);
+            label1.TabIndex = 8;
+            label1.Text = "ver:x.y.z";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // GithubText
             // 
-            this.GithubText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.GithubText.Location = new System.Drawing.Point(6, 387);
-            this.GithubText.Name = "GithubText";
-            this.GithubText.Size = new System.Drawing.Size(97, 25);
-            this.GithubText.TabIndex = 9;
-            this.GithubText.Text = "Github:";
-            this.GithubText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            GithubText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            GithubText.Location = new Point(6, 387);
+            GithubText.Name = "GithubText";
+            GithubText.Size = new Size(97, 25);
+            GithubText.TabIndex = 9;
+            GithubText.Text = "Github:";
+            GithubText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // githubLink
             // 
-            this.githubLink.AutoSize = true;
-            this.githubLink.Location = new System.Drawing.Point(103, 392);
-            this.githubLink.Margin = new System.Windows.Forms.Padding(0);
-            this.githubLink.Name = "githubLink";
-            this.githubLink.Size = new System.Drawing.Size(317, 20);
-            this.githubLink.TabIndex = 11;
-            this.githubLink.TabStop = true;
-            this.githubLink.Text = "https://github.com/zmcj21/OpenSWF2EXE";
-            this.githubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            githubLink.AutoSize = true;
+            githubLink.Location = new Point(103, 392);
+            githubLink.Margin = new Padding(0);
+            githubLink.Name = "githubLink";
+            githubLink.Size = new Size(317, 20);
+            githubLink.TabIndex = 11;
+            githubLink.TabStop = true;
+            githubLink.Text = "https://github.com/zmcj21/OpenSWF2EXE";
+            githubLink.LinkClicked += linkLabel1_LinkClicked;
             // 
             // ArtistText
             // 
-            this.ArtistText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ArtistText.Location = new System.Drawing.Point(9, 158);
-            this.ArtistText.Margin = new System.Windows.Forms.Padding(0);
-            this.ArtistText.Name = "ArtistText";
-            this.ArtistText.Size = new System.Drawing.Size(94, 25);
-            this.ArtistText.TabIndex = 12;
-            this.ArtistText.Text = "Artist:";
-            this.ArtistText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            ArtistText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ArtistText.Location = new Point(9, 158);
+            ArtistText.Margin = new Padding(0);
+            ArtistText.Name = "ArtistText";
+            ArtistText.Size = new Size(94, 25);
+            ArtistText.TabIndex = 12;
+            ArtistText.Text = "Artist:";
+            ArtistText.TextAlign = ContentAlignment.MiddleRight;
             // 
             // textBox3
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(103, 155);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(161, 33);
-            this.textBox3.TabIndex = 13;
-            this.textBox3.Text = "ChiefBYW";
+            textBox3.BorderStyle = BorderStyle.FixedSingle;
+            textBox3.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox3.Location = new Point(103, 155);
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new Size(161, 33);
+            textBox3.TabIndex = 13;
+            textBox3.Text = "ChiefBYW";
             // 
             // TestText
             // 
-            this.TestText.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TestText.Location = new System.Drawing.Point(41, 239);
-            this.TestText.Margin = new System.Windows.Forms.Padding(0);
-            this.TestText.Name = "TestText";
-            this.TestText.Size = new System.Drawing.Size(361, 33);
-            this.TestText.TabIndex = 14;
-            this.TestText.Text = "List of testers:";
-            this.TestText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            TestText.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            TestText.Location = new Point(41, 239);
+            TestText.Margin = new Padding(0);
+            TestText.Name = "TestText";
+            TestText.Size = new Size(361, 33);
+            TestText.TabIndex = 14;
+            TestText.Text = "List of testers:";
+            TestText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(41, 275);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(361, 100);
-            this.textBox4.TabIndex = 15;
-            this.textBox4.Text = "zmcj21\r\nChiefBYW\r\n李小王\r\n24个豌豆";
+            textBox4.Location = new Point(41, 275);
+            textBox4.Multiline = true;
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.ScrollBars = ScrollBars.Vertical;
+            textBox4.Size = new Size(361, 100);
+            textBox4.TabIndex = 15;
+            textBox4.Text = "zmcj21\r\nChiefBYW\r\n李小王\r\n24个豌豆\r\nprimetime43";
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 433);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.TestText);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.ArtistText);
-            this.Controls.Add(this.githubLink);
-            this.Controls.Add(this.GithubText);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.EmailText);
-            this.Controls.Add(this.AuthorText);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AboutForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(454, 433);
+            Controls.Add(textBox4);
+            Controls.Add(TestText);
+            Controls.Add(textBox3);
+            Controls.Add(ArtistText);
+            Controls.Add(githubLink);
+            Controls.Add(GithubText);
+            Controls.Add(label1);
+            Controls.Add(textBox2);
+            Controls.Add(textBox1);
+            Controls.Add(pictureBox1);
+            Controls.Add(EmailText);
+            Controls.Add(AuthorText);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "AboutForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "About";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

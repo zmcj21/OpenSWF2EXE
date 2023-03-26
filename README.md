@@ -1,4 +1,4 @@
-# OpenSWF2EXE
+# OpenSWF2EXE 0.2.2
 
 [中文](https://github.com/zmcj21/OpenSWF2EXE/blob/main/docs/README_cn.md)
 

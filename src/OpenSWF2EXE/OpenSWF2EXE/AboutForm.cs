@@ -4,6 +4,8 @@ namespace OpenSWF2EXE
 {
     public partial class AboutForm : Form
     {
+        private string VersionText = "0.2.2";
+
         #region LocaleSetting
 
         private string AuthorTextCN = "作者:";
@@ -26,6 +28,7 @@ namespace OpenSWF2EXE
         public AboutForm()
         {
             InitializeComponent();
+            label1.Text = VersionText;
             if (MainWindow.humanLanguage == HumanLanguage.Chinese)
             {
                 AuthorText.Text = AuthorTextCN;
