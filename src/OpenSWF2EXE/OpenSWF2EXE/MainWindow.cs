@@ -167,7 +167,8 @@ namespace OpenSWF2EXE
 
             byte[] flashSignature = flashSWFReader.ReadBytes(3);
             if ((flashSignature[0] == 'F' && flashSignature[1] == 'W' && flashSignature[2] == 'S') ||
-                (flashSignature[0] == 'C' && flashSignature[1] == 'W' && flashSignature[2] == 'S'))
+                (flashSignature[0] == 'C' && flashSignature[1] == 'W' && flashSignature[2] == 'S') ||
+                (flashSignature[0] == 'Z' && flashSignature[1] == 'W' && flashSignature[2] == 'S'))
             {
                 flashSWFExecutable = true;
             }
