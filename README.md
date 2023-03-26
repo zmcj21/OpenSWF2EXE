@@ -2,7 +2,7 @@
 
 [中文](https://github.com/zmcj21/OpenSWF2EXE/blob/main/docs/README_cn.md)
 
-Last updated date : 2022/4/29
+Last updated date : 2023/3/26
 
 ### Intro
 
@@ -13,6 +13,12 @@ OpenSource swf to exe converter.
 ### Usage
 
 Download newest release version and open it.
+
+### Contributors
+
+* [zmcj21](https://github.com/zmcj21)
+
+* [primetime43](https://github.com/primetime43)
 
 ### References
 
